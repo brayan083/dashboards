@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { SearchConsoleTable } from "@/components/search-console-table"
-import { LineChart } from "@/components/line-chart"
+import { CustomLineChart } from "@/components/line-chart"
 
 export default function SearchConsolePage() {
   return (
@@ -68,7 +68,7 @@ export default function SearchConsolePage() {
             <CardTitle>Clicks & Impressions Over Time</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
-            <LineChart />
+            <CustomLineChart />
           </CardContent>
         </Card>
         <Card className="col-span-3">

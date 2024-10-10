@@ -1,6 +1,6 @@
 "use client"
 
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts"
+import { Bar, BarChart as RechartsBarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts"
 
 const data = [
   { name: "Organic", value: 45 },
@@ -9,15 +9,15 @@ const data = [
   { name: "Social", value: 10 },
 ]
 
-export function BarChart() {
+export function CustomBarChart() {
   return (
     <ResponsiveContainer width="100%" height={350}>
-      <BarChart data={data}>
+      <RechartsBarChart data={data}>
         <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
         <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}%`} />
         <Bar dataKey="value" fill="#adfa1d" radius={[4, 4, 0, 0]} />
         <Tooltip />
-      </BarChart>
+      </RechartsBarChart>
     </ResponsiveContainer>
   )
 }

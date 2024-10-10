@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { AnalyticsTable } from "@/components/analytics-table"
-import { BarChart } from "@/components/bar-chart"
+import { CustomBarChart } from "@/components/bar-chart"
 
 export default function AnalyticsPage() {
   return (
@@ -68,7 +68,7 @@ export default function AnalyticsPage() {
             <CardTitle>Traffic Sources</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
-            <BarChart />
+            <CustomBarChart />
           </CardContent>
         </Card>
         <Card className="col-span-3">
