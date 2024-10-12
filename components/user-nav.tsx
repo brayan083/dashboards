@@ -50,14 +50,14 @@ export function UserNav() {
             Settings
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <button onClick={toggleDarkMode}>
+          <DropdownMenuItem onClick={toggleDarkMode}>
+            <button>
               {theme === "dark" ? "Modo Claro" : "Modo Oscuro"}
             </button>
             <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator /> 
         <DropdownMenuItem>
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
