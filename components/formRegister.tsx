@@ -13,14 +13,24 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { z } from "zod";
-import { loginSchema } from "@/lib/zod";
+import { registerSchema } from "@/lib/zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { signIn } from "@/auth";
+import { registerAction } from "@/actions/auth-action";
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 
-const FormLogin = () => {
+const FormRegister = () => {
+
+  const [error, setError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition()
+  const router = useRouter();
+
+  
   // 1. Define your form.
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+  const form = useForm<z.infer<typeof registerSchema>>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -28,16 +38,35 @@ const FormLogin = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof loginSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof registerSchema>) {
+    setError(null);
+    startTransition(async () => {
+      const response = await registerAction(values);
+      if (response.error) {
+        setError(response.error);
+      } else {
+        router.push("/dash");
+      }
+    });
   }
 
   return (
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>name</FormLabel>
+                <FormControl>
+                  <Input placeholder="name" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="email"
@@ -64,10 +93,11 @@ const FormLogin = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          {error && <FormMessage>{error}</FormMessage>}
+          <Button type="submit" disabled={isPending}>Submit</Button>
         </form>
       </Form>
     </div>
   );
 };
-export default FormLogin;
+export default FormRegister;
