@@ -48,12 +48,13 @@ model Account {
  
   @@unique([provider, providerAccountId])
   @@index([userId])
+  // @@index([userId], name: "Account_userId_fkey") // This is the foreign key index
 }
  
 model VerificationToken {
-  identifier String
+  identifier String   @unique
   token      String
   expires    DateTime
  
-  @@unique([identifier, token])
+  @@id([identifier])
 }

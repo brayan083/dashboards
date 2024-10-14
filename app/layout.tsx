@@ -42,8 +42,6 @@ export default function RootLayout({
                   <div className="ml-auto flex items-center space-x-4">
                     <Button color="primary"><a href="/login">Sign In</a></Button>
                     <Button color="primary"><a href="/register">Register</a></Button>
-                    {/* <Login />
-                    <Register /> */}
                     <UserNav />
                   </div>
                 </div>

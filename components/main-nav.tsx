@@ -18,6 +18,7 @@ export function MainNav({
     { name: "Semrush", url: "/semrush" },
     { name: "Search Console", url: "/search-console" },
     { name: "Google Analytics", url: "/analytics" },
+    { name: "Google Analytics 2", url: "/search-console2" },
   ]
 
   return (
