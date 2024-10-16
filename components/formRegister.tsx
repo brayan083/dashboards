@@ -45,7 +45,8 @@ const FormRegister = () => {
       if (response.error) {
         setError(response.error);
       } else {
-        router.push("/dash");
+        router.push("/");
+        window.location.reload();
       }
     });
   }

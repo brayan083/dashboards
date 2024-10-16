@@ -26,7 +26,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
   const session = await auth();
 
   return (
@@ -47,9 +46,11 @@ export default async function RootLayout({
                     {session !== null ? (
                       <UserNav />
                     ) : (
-                      <Button color="primary" className="hover:bg-blue-300">
-                        <a href="/login">Sign In</a>
-                      </Button>
+                      <a href="/login">
+                        <Button color="primary" className="hover:bg-blue-300">
+                          Sign In
+                        </Button>
+                      </a>
                     )}
                   </div>
                 </div>
