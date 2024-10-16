@@ -32,7 +32,7 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload, label })
 
 const TotalSearchesChart: React.FC = () => {
   return (
-    <div className="text-center bg-gray-100 p-5 rounded-lg">
+    <div className="text-center  p-5 rounded-lg">
       <h2 className="text-xl font-semibold mb-4">Total Searches per Month</h2>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data}>

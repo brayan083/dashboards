@@ -22,8 +22,7 @@ const GSCReport: React.FC = () => {
         <TabsTrigger value="comparison">Comparison</TabsTrigger>
       </TabsList>
       <TabsContent value="overview">
-        {/* <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3"> */}
-        <div className="space-y-5">
+        <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
           <Card>
             <CardHeader>
               <CardTitle>Total Searches</CardTitle>

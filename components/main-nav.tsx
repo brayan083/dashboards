@@ -16,9 +16,9 @@ export function MainNav({
   const rutas = [
     { name: "Overview", url: "/" },
     { name: "Semrush", url: "/semrush" },
-    { name: "Search Console", url: "/search-console" },
+    // { name: "Search Console", url: "/search-console" },
     { name: "Google Analytics", url: "/analytics" },
-    { name: "Google Analytics 2", url: "/search-console2" },
+    { name: "Search Console 2", url: "/search-console2" },
   ]
 
   return (

@@ -45,7 +45,8 @@ const FormLogin = () => {
       if (response.error) {
         setError(response.error);
       } else {
-        router.push("/dash");
+        router.push("/");
+        window.location.reload(); // Recarga toda la página
       }
     });
   }

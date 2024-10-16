@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
+import LogoutButton from "./logout-button";
 
 export function UserNav() {
   const { theme, setTheme } = useTheme();
@@ -51,15 +52,19 @@ export function UserNav() {
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={toggleDarkMode}>
-            <button>
-              {theme === "dark" ? "Modo Claro" : "Modo Oscuro"}
+            <button>{theme === "dark" ? "Modo Claro" : "Modo Oscuro"}</button>
+            <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <button color="primary">
+              <a href="/register">Register</a>
             </button>
             <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuSeparator /> 
+        <DropdownMenuSeparator />
         <DropdownMenuItem>
-          Log out
+          <LogoutButton />
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
