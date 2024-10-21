@@ -3,17 +3,22 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const data = [
-  { keyword: 'SEO', organic: 4000, paid: 2400 },
-  { keyword: 'Marketing', organic: 3000, paid: 1398 },
-  { keyword: 'Analytics', organic: 2000, paid: 9800 },
-  { keyword: 'PPC', organic: 2780, paid: 3908 },
-  { keyword: 'Content', organic: 1890, paid: 4800 },
-  { keyword: 'Social', organic: 2390, paid: 3800 },
-  { keyword: 'Email', organic: 3490, paid: 4300 },
-];
+// const data = [
+//   { keyword: 'SEO', organic: 4000, paid: 2400 },
+//   { keyword: 'Marketing', organic: 3000, paid: 1398 },
+//   { keyword: 'Analytics', organic: 2000, paid: 9800 },
+//   { keyword: 'PPC', organic: 2780, paid: 3908 },
+//   { keyword: 'Content', organic: 1890, paid: 4800 },
+//   { keyword: 'Social', organic: 2390, paid: 3800 },
+//   { keyword: 'Email', organic: 3490, paid: 4300 },
+// ];
 
-const Top10SearchesChart: React.FC = () => {
+// Define la interfaz para los props
+interface Top10SearchesChartProps {
+  data: { keyword: string; organic: number; paid: number }[];
+}
+
+const Top10SearchesChart: React.FC<Top10SearchesChartProps> = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <BarChart data={data}>

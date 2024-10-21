@@ -1,60 +1,61 @@
+// Prisma schema
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
- 
+
 generator client {
   provider = "prisma-client-js"
 }
 
-enum Role {
-  user
-  admin
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  username String? @unique
+  password String?
+  role     Role    @default(USER)
+  charts   Chart[]
+  isActive Boolean @default(true)
+  profilePicture String?
+  bio      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  UserChartPermission UserChartPermission[]
 }
 
-model User {
-  id            String          @id @default(cuid())
-  name          String?
-  username      String?         @unique
-  email         String?         @unique
-  password      String?
-  emailVerified DateTime?
-  image         String?
-  role          Role            @default(user)
-  accounts      Account[]
-  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Chart {
+  id          Int     @id @default(autoincrement())
+  name        String
+  type        String
+  data        Json
+  userId      Int
+  user        User    @relation(fields: [userId], references: [id])
+  description String?
+  isPublic    Boolean @default(false)
+  tags        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  UserChartPermission UserChartPermission[]
 }
- 
-model Account {
-  id                       String  @id @default(cuid())
-  userId                   String  @unique
-  type                     String
-  provider                 String
-  providerAccountId        String
-  refresh_token            String? @db.Text
-  access_token             String? @db.Text
-  expires_at               Int?
-  token_type               String?
-  scope                    String?
-  id_token                 String? @db.Text
-  session_state            String?
-  refresh_token_expires_in Int?
-  user                     User?   @relation(fields: [userId], references: [id])
- 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
- 
-  @@unique([provider, providerAccountId])
-  @@index([userId])
-  // @@index([userId], name: "Account_userId_fkey") // This is the foreign key index
+
+model UserChartPermission {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  chartId        Int
+  user           User     @relation(fields: [userId], references: [id])
+  chart          Chart    @relation(fields: [chartId], references: [id])
+  permissionLevel String  @default("read")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([userId, chartId])
 }
- 
-model VerificationToken {
-  identifier String   @unique
-  token      String
-  expires    DateTime
- 
-  @@id([identifier])
+
+enum Role {
+  USER
+  ADMIN
 }
