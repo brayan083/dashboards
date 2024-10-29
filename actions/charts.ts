@@ -29,19 +29,19 @@ export async function saveChart(chartData: {
   }
 
   try {
-    // const savedChart = await db.chart.create({
-    //   data: chartData,
-    // });
+    const savedChart = await db.chart.create({
+      data: chartData,
+    });
 
-    // // Crear el permiso para el usuario que creó el gráfico
-    // await db.userChartPermission.create({
-    //   data: {
-    //     userId: user.id,
-    //     chartId: savedChart.id,
-    //   },
-    // });
+    // Crear el permiso para el usuario que creó el gráfico
+    await db.userChartPermission.create({
+      data: {
+        userId: user.id,
+        chartId: savedChart.id,
+      },
+    });
 
-    // return { success: true, chart: savedChart };
+    return { success: true, chart: savedChart };
   } catch (error) {
     console.error('Error al guardar el gráfico:', error);
     return { success: false, error: 'Error al guardar el gráfico' };

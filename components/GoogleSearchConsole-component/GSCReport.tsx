@@ -12,7 +12,6 @@ import ComparisonMetricsTable from "./tables/ComparisonMetricsTable";
 import ClicksImpressionsChart from "./charts/ClicksImpressionsChart";
 import MonthlyComparisonTable from "./tables/MonthlyComparisonTable";
 import { saveChart } from "@/actions/charts";
-import { auth } from "@/auth";
 
 // Simulación de función para verificar permisos
 const tienePermiso = (chartId: string): boolean => {
@@ -71,7 +70,7 @@ const GSCReport: React.FC = () => {
       </TabsList>
       <TabsContent value="overview">
         <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
-          {/* {tienePermiso("Búsquedas Mensuales") && (
+          {tienePermiso("Búsquedas Mensuales") && (
             <Card>
               <CardHeader>
                 <CardTitle>Total Searches</CardTitle>
@@ -100,8 +99,10 @@ const GSCReport: React.FC = () => {
                 <ClicksImpressionsChart data={dataClicksImpressionsChart} />
               </CardContent>
             </Card>
-          )} */}
-          <Card>
+          )}
+
+          
+          {/* <Card>
             <CardHeader>
               <CardTitle>Total Searches</CardTitle>
             </CardHeader>
@@ -160,7 +161,7 @@ const GSCReport: React.FC = () => {
                 Guardar Gráfico
               </button>
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
       </TabsContent>
       <TabsContent value="keywords">
