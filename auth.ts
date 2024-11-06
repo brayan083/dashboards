@@ -27,7 +27,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     session({ session, token }) {
       if (session.user) { // Si la sesión del usuario está disponible
         session.user.role = token.role; // Agrega el rol del token a la sesión del usuario
-        // session.user.id = token.id; // Agrega el ID del token a la sesión del usuario v
+        session.user.id = token.id as string; // Agrega el ID del token a la sesión del usuario v
       }
       return session; // Retorna la sesión modificada
     },

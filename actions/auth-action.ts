@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn } from "@/auth";
+import { auth, signIn } from "@/auth";
 import db from "@/lib/db";
 import { loginSchema, registerSchema } from "@/lib/zod";
 import { AuthError } from "next-auth";
@@ -67,3 +67,8 @@ export const registerAction = async (values: z.infer<typeof registerSchema>) => 
     return { error: "error 500" };
   }
 };
+
+export const getUserData = async () => {
+  const session = await auth();
+  return session;
+}

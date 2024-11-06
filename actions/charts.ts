@@ -10,12 +10,14 @@ export async function saveChart(chartData: {
   userId: number;
 }) {
 
+  // console.log('Aqui toy');
+
   // Convertimos el string de data a un objeto
   chartData.data = JSON.parse(chartData.data);
 
 
   const session = await auth();
-  console.log('session', session);
+  // console.log('session', session);
   if (!session || !session.user || !session.user.email) {
     throw new Error("No se ha iniciado sesión o el email no está disponible");
   }
@@ -27,6 +29,7 @@ export async function saveChart(chartData: {
   if (!user) {
     throw new Error("Usuario no encontrado");
   }
+
 
   try {
     const savedChart = await db.chart.create({
@@ -69,4 +72,16 @@ export async function getUserCharts() {
   });
 
   return permissions.map(permission => permission.chart);
+}
+
+
+export async function getAccessibleCharts(userId: number) {
+  const accessibleCharts = await db.userChartPermission.findMany({
+    where: { userId: userId },
+    include: { chart: true }, // Incluye los detalles del gráfico si es necesario
+  });
+
+  // console.log('accessibleCharts', accessibleCharts);
+
+  return accessibleCharts;
 }
